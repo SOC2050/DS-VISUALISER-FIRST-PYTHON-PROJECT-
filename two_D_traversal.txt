@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void traversalOf2DArray( int *arr)
+{
+  // Accessing and printing the array values
+    printf("Traversal of 2D Array :\n");
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Element At ( %d , %d ) = %d \n", i , j , array[i][j]);
+        }
+        printf("\n");
+    }
+    
+}
+  
+int main() {
+    int rows, cols;
+
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+
+    printf("Enter the number of columns: ");
+    scanf("%d", &cols);
+
+    // Dynamically allocate memory for the 2D array
+    int **array = (int **)malloc(rows * sizeof(int *));
+    for (int i = 0; i < rows; i++) {
+        array[i] = (int *)malloc(cols * sizeof(int));
+    }
+
+    // Assigning values to the array
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            printf("Enter the value for array[%d][%d]: ", i, j);
+            scanf("%d", &array[i][j]);
+        }
+    }
+
+    
+
+    // Deallocate memory
+    for (int i = 0; i < rows; i++) {
+        free(array[i]);
+    }
+    free(array);
+
+    return 0;
+}
