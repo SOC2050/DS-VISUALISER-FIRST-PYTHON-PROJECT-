@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define ROWS 3
+#define COLS 3
+
+void generateMatrix(int matrix[ROWS][COLS]) {
+    int i, j;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            matrix[i][j] = rand() % 10;  // Generate random numbers from 0 to 9
+        }
+    }
+}
+
+void printMatrix(int matrix[ROWS][COLS]) {
+    int i, j;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void divisionMatrices(int matrix1[ROWS][COLS], int matrix2[ROWS][COLS], int result[ROWS][COLS]) {
+    int i, j;
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            result[i][j] = matrix1[i][j] / matrix2[i][j];
+        }
+    }
+}
+
+int main() {
+    int matrix1[ROWS][COLS];
+    int matrix2[ROWS][COLS];
+    int result[ROWS][COLS];
+
+    srand(time(0));  // Seed the random number generator with the current time
+
+    // Generate the matrices
+    generateMatrix(matrix1);
+    generateMatrix(matrix2);
+
+    // Print the matrices
+    printf("Matrix 1:\n");
+    printMatrix(matrix1);
+    printf("\n");
+
+    printf("Matrix 2:\n");
+    printMatrix(matrix2);
+    printf("\n");
+
+    // Perform division 
+    divisionMatrices(matrix1, matrix2, result);
+
+    // Print the result
+    printf("Result:\n");
+    printMatrix(result);
+
+    return 0;
+}
