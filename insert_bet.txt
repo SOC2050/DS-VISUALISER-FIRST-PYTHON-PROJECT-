@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+void display(struct Node* head) {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
+
+void insert_in_between(struct Node** head, int data, int index) {
+    if (index < 0) {
+        printf("Invalid index\n");
+        return;
+    }
+
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+    new_node->data = data;
+    new_node->next = NULL;
+
+    if (index == 0) {
+        new_node->next = *head;
+        *head = new_node;
+    } else {
+        struct Node* current = *head;
+        struct Node* prev = NULL;
+        int count = 0;
+
+        while (current != NULL && count < index) {
+            prev = current;
+            current = current->next;
+            count++;
+        }
+
+        if (count < index) {
+            printf("Index out of range\n");
+            free(new_node);
+            return;
+        }
+
+        prev->next = new_node;
+        new_node->next = current;
+    }
+}
+
+int main() {
+    struct Node* head = NULL;
+
+    // Inserting elements in the linked list
+    insert_in_between(&head, 2, 0);
+    insert_in_between(&head, 4, 1);
+    insert_in_between(&head, 3, 2);
+    insert_in_between(&head, 1, 3);
+
+    // Displaying the linked list
+    display(head);
+
+    // Inserting in between
+    insert_in_between(&head, 10, 2);
+
+    // Displaying the updated linked list
+    display(head);
+
+    return 0;
+}
