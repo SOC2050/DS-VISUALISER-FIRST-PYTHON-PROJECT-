@@ -1,0 +1,24 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top = -1;
+
+void push(int element) {
+    if (top >= MAX_SIZE - 1) {
+        printf("Stack Overflow: Cannot push element, stack is full.\n");
+        return;
+    }
+
+    top++;
+    stack[top] = element;
+    printf("Pushed %d onto the stack.\n", element);
+}
+
+int main() {
+    push(10);   // Example usage: Pushing 10 onto the stack
+    push(20);   // Example usage: Pushing 20 onto the stack
+    push(30);   // Example usage: Pushing 30 onto the stack
+
+    return 0;
+}
