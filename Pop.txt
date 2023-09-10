@@ -1,0 +1,29 @@
+#include <stdio.h>
+#define MAX_SIZE 100
+
+int stack[MAX_SIZE];
+int top = -1;
+
+int pop() {
+    if (top == -1) {
+        printf("Stack Underflow: Cannot pop element, stack is empty.\n");
+        return -1;  // Return a sentinel value or handle the underflow condition appropriately
+    }
+
+    int element = stack[top];
+    top--;
+    return element;
+}
+
+int main() {
+    push(10);   // Example usage: Pushing 10 onto the stack
+    push(20);   // Example usage: Pushing 20 onto the stack
+    push(30);   // Example usage: Pushing 30 onto the stack
+
+    int poppedElement = pop();   // Example usage: Popping an element from the stack
+    if (poppedElement != -1) {
+        printf("Popped %d from the stack.\n", poppedElement);
+    }
+
+    return 0;
+}
